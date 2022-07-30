@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Quanticheart\Laravel\Helpers;
 
 use Illuminate\Support\Facades\Crypt;
 
