@@ -1,7 +1,7 @@
 {
     "name": "quanticheart/laravel",
     "description": "Utils for laravel",
-    "type": "project",
+    "type": "library",
     "minimum-stability": "dev",
     "license": "proprietary",
     "autoload": {
