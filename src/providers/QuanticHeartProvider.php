@@ -1,8 +1,9 @@
 <?php
 
-namespace Quanticheart\Laravel;
+namespace Quanticheart\Laravel\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Quanticheart\Laravel\Commands\MakeHelperCommand;
 
 class QuanticHeartProvider extends ServiceProvider
 {
@@ -22,5 +23,17 @@ class QuanticHeartProvider extends ServiceProvider
      */
     public function boot()
     {
+//        $this->loadRoutesFrom(__DIR__.'/routes.php');
+//        $this->loadMigrationsFrom(__DIR__.'/migrations');
+//        $this->loadViewsFrom(__DIR__.'/views', 'todolist');
+//        $this->publishes([
+//            __DIR__.'/views' => base_path('resources/views/quanticheart/todolist'),
+//        ]);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                MakeHelperCommand::class
+            ]);
+        }
     }
 }

@@ -1,0 +1,29 @@
+{
+    "name": "quanticheart/laravel",
+    "description": "Utils for laravel",
+    "type": "project",
+    "minimum-stability": "dev",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "quanticheart\\laravel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jonn Alves",
+            "email": "dev.quanticheart@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "quanticheart\\laravel\\src\\providers\\QuanticHeartProvider",
+                "quanticheart\\laravel\\src\\providers\\HelperServiceProvider"
+            ]
+        }
+    }
+}
