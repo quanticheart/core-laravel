@@ -16,7 +16,10 @@
         }
     ],
     "require": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "jenssegers/agent": "3.0.x-dev",
+        "firebase/php-jwt": "dev-main",
+        "ext-curl": "*"
     },
     "extra": {
         "laravel": {

@@ -32,4 +32,8 @@ class ResponseCodes
 
     /*CSRF TOKEN*/
     const RESPONSE_CODE_CSRF_TOKEN_OUT = 419;
+
+    /*Server Erros*/
+    const RESPONSE_CODE_500 = 150;
+    const RESPONSE_CODE_400 = 151;
 }

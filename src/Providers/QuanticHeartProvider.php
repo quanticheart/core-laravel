@@ -4,6 +4,7 @@ namespace Quanticheart\Laravel\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Quanticheart\Laravel\Commands\MakeHelperCommand;
+use Quanticheart\Laravel\Commands\MigrateQuanticHeartCommand;
 
 class QuanticHeartProvider extends ServiceProvider
 {
@@ -32,7 +33,8 @@ class QuanticHeartProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                MakeHelperCommand::class
+                MakeHelperCommand::class,
+                MigrateQuanticHeartCommand::class
             ]);
         }
     }
