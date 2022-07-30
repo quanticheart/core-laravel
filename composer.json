@@ -6,7 +6,7 @@
     "license": "proprietary",
     "autoload": {
         "psr-4": {
-            "quanticheart\\laravel\\": "src/"
+            "Quanticheart\\Laravel\\": "src/"
         }
     },
     "authors": [
