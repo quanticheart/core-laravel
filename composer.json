@@ -21,8 +21,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "quanticheart\\laravel\\src\\providers\\QuanticHeartProvider",
-                "quanticheart\\laravel\\src\\providers\\HelperServiceProvider"
+                "quanticheart\\laravel\\src\\Providers\\QuanticHeartProvider",
+                "quanticheart\\laravel\\src\\Providers\\HelperServiceProvider"
             ]
         }
     }
