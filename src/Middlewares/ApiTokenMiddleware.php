@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Quanticheart\Laravel\Middlewares;
 
-use App\Constants\ResponseCodes;
-use App\Models\ApiToken\ApiToken;
-use App\Models\ApiToken\ApiTokenFail;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
+use Quanticheart\Laravel\Constants\ResponseCodes;
+use Quanticheart\Laravel\Models\ApiToken\ApiToken;
+use Quanticheart\Laravel\Models\ApiToken\ApiTokenFail;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
-use function App\Helpers\responseError;
+use function Quanticheart\Laravel\Helpers\responseError;
 
 class ApiTokenMiddleware
 {
@@ -88,7 +88,7 @@ class ApiTokenMiddleware
             }
         }
 
-        if($agent->robot() === "Okhttp"){
+        if ($agent->robot() === "Okhttp") {
             if ($tokenPlatform === "android") {
                 $auth = true;
             }
