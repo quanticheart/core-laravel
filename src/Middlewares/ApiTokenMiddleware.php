@@ -1,13 +1,16 @@
 <?php
 
-namespace Quanticheart\Laravel\Middlewares;
+namespace App\Http\Middleware;
 
+use App\Constants\ResponseCodes;
+use App\Models\ApiToken\ApiToken;
+use App\Models\ApiToken\ApiTokenFail;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
-use Quanticheart\Laravel\Models\ApiToken\ApiToken;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use function App\Helpers\responseError;
 
 class ApiTokenMiddleware
 {
@@ -20,7 +23,7 @@ class ApiTokenMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $apiToken = $request->header('api-token');
+        $apiToken = $request->header('Api-Token');
         if (isset($apiToken)) {
             $verifyToken = ApiToken::where("token", $apiToken)
                 ->with('platformDetails')
@@ -41,57 +44,64 @@ class ApiTokenMiddleware
 
     private function verifyTokenType(Request $request, Closure $next, $apiToken, $tokenPlatform)
     {
-//        $auth = false;
-//        $agent = new Agent();
-//        $platform = $agent->platform();
-//
-//        if ($agent->isRobot()) {
-//            if (env("APP_DEBUG")) {
-//                if ($tokenPlatform === "debug") {
-//                    $auth = true;
-//                }
-//            } else {
-//                return $this->returnErrorTokenDebugOnProd($request, $apiToken);
-//            }
-//        }
-//
-//        if ($agent->isDesktop()) {
-//
-//            if ($tokenPlatform === "web") {
-//                $auth = true;
-//            }
-//
-//            if ($tokenPlatform === "test") {
-//                if (env("APP_DEBUG")) {
-//                    $auth = true;
-//                } else {
-//                    $auth = false;
-//                }
-//            }
-//        }
-//
-//        if ($agent->isMobile() || $agent->isTablet()) {
-//            if ($platform === 'iOS') {
-//                if ($tokenPlatform === "ios") {
-//                    $auth = true;
-//                }
-//            }
-//
-//            if ($platform === 'AndroidOS') {
-//                if ($tokenPlatform === "android") {
-//                    $auth = true;
-//                }
-//            }
-//        }
-//
-//        /**
-//         * verify auth is ok
-//         */
-//        if ($auth) {
-        return $next($request);
-//        } else {
-//            return $this->returnErrorTokenPlatform($request, $apiToken);
-//        }
+        $auth = false;
+        $agent = new Agent();
+        $platform = $agent->platform();
+
+        if ($agent->isRobot()) {
+            if ($agent->robot() !== "Okhttp")
+                if (env("APP_DEBUG")) {
+                    if ($tokenPlatform === "debug") {
+                        $auth = true;
+                    }
+                } else {
+                    return $this->returnErrorTokenDebugOnProd($request, $apiToken);
+                }
+        }
+
+        if ($agent->isDesktop()) {
+
+            if ($tokenPlatform === "web") {
+                $auth = true;
+            }
+
+            if ($tokenPlatform === "test") {
+                if (env("APP_DEBUG")) {
+                    $auth = true;
+                } else {
+                    $auth = false;
+                }
+            }
+        }
+
+        if ($agent->isMobile() || $agent->isTablet()) {
+            if ($platform === 'iOS') {
+                if ($tokenPlatform === "ios") {
+                    $auth = true;
+                }
+            }
+
+            if ($platform === 'AndroidOS') {
+                if ($tokenPlatform === "android") {
+                    $auth = true;
+                }
+            }
+        }
+
+        if($agent->robot() === "Okhttp"){
+            if ($tokenPlatform === "android") {
+                $auth = true;
+            }
+        }
+
+        /**
+         * verify auth is ok
+         */
+        if ($auth) {
+            return $next($request);
+        } else {
+            return $this->returnErrorTokenPlatform($request, $apiToken);
+        }
     }
 
     private function returnErrorTokenIsNull(Request $request): JsonResponse
