@@ -1,5 +1,11 @@
 # Laravel Utils
 
+- [Packagist](https://packagist.org/packages/quanticheart/laravel)
+
+```
+composer require quanticheart/laravel
+`````
+
 ### External Requires
 * [Firebase JWT](https://github.com/firebase/php-jwt)
 * [jenssegers](https://github.com/jenssegers/agent)
