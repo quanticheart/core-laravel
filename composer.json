@@ -1,5 +1,5 @@
 {
-    "name": "quanticheart/laravel",
+    "name": "quanticheart/local",
     "description": "Utils for laravel",
     "type": "library",
     "minimum-stability": "dev",
@@ -17,9 +17,11 @@
     ],
     "require": {
         "php": ">=7.4",
-        "jenssegers/agent": "3.0.x-dev",
         "firebase/php-jwt": "dev-main",
-        "ext-curl": "*"
+        "mobiledetect/mobiledetectlib": "^2.7.6",
+        "jaybizzle/crawler-detect": "^1.2",
+        "ext-curl": "*",
+        "ext-dom": "*"
     },
     "extra": {
         "laravel": {

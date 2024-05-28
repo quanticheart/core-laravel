@@ -1,0 +1,24 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Http\Request;
+
+class {{ class }}
+{
+
+    private {{ classRepository }} $repository;
+
+    /**
+     * @param {{ classRepository }} $repository
+     */
+    public function __construct({{ classRepository }} $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    function refresh(Request $request): bool
+    {
+        return $this->repository->refresh();
+    }
+}

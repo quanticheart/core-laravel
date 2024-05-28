@@ -2,9 +2,10 @@
 
 namespace Quanticheart\Laravel\Helpers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Support\Facades\App;
 use Jenssegers\Agent\Agent;
-use PHPUnit\Exception;
 
 if (!function_exists('trans_fallback')) {
     /**
@@ -12,7 +13,8 @@ if (!function_exists('trans_fallback')) {
      *
      * @param string $id
      * @param string $fallback
-     * @return array|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Translation\Translator|string|null
+     * @param array $replace
+     * @return array|Application|Translator|string|null
      */
     function trans_fallback(string $id, string $fallback, $replace = [])
     {

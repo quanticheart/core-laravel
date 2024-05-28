@@ -1,0 +1,27 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
+class {{ class }} extends Controller
+{
+
+    private {{ classService }} $service;
+
+    /**
+     * @param {{ classService }} $service
+     */
+    public function __construct({{ classService }} $service)
+    {
+        $this->service = $service;
+    }
+
+    function refresh(Request $request): JsonResponse
+    {
+        $data = $this->service->refresh($request);
+        return response()->json($data);
+    }
+}
