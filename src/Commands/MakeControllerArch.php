@@ -139,7 +139,7 @@ class MakeControllerArch extends GeneratorCommand
      */
     protected function getStub()
     {
-        return app_path() . '/Console/Commands/Stubs/Arch/dummy-controller.stub';
+        return __DIR__ . '/Stubs/Arch/dummy-controller.stub';
     }
 
     /**

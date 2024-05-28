@@ -1,4 +1,15 @@
 {
+    "homepage": "https://github.com/jenssegers/agent",
+    "keywords": [
+        "laravel",
+        "useragent",
+        "agent",
+        "user agent",
+        "browser",
+        "platform",
+        "mobile",
+        "desktop"
+    ],
     "name": "quanticheart/local",
     "description": "Utils for laravel",
     "type": "library",
@@ -24,11 +35,21 @@
         "ext-dom": "*"
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "local"
+        },
         "laravel": {
             "providers": [
                 "Quanticheart\\Laravel\\Providers\\QuanticHeartProvider",
-                "Quanticheart\\Laravel\\Providers\\HelperServiceProvider"
-            ]
+                "Quanticheart\\Laravel\\Providers\\HelperServiceProvider",
+                "Quanticheart\\Laravel\\Jenssegers\\Agent\\AgentServiceProvider"
+            ],
+            "aliases": {
+                "Agent": "Quanticheart\\Laravel\\Jenssegers\\Agent\\Facades\\Agent"
+            }
         }
+    },
+    "suggest": {
+        "illuminate/support": "Required for laravel service providers"
     }
 }

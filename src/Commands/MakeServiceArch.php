@@ -80,7 +80,7 @@ class MakeServiceArch extends GeneratorCommand
      */
     protected function getStub()
     {
-        return app_path() . '/Console/Commands/Stubs/Arch/dummy-service.stub';
+        return __DIR__ . '/Stubs/Arch/dummy-service.stub';
     }
 
     /**

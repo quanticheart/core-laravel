@@ -1,6 +1,6 @@
 <?php
 
-namespace Jenssegers\Agent;
+namespace Quanticheart\Laravel\Jenssegers\Agent;
 
 use BadMethodCallException;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;

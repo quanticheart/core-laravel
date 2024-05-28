@@ -1,6 +1,6 @@
 <?php
 
-namespace Jenssegers\Agent\Facades;
+namespace Quanticheart\Laravel\Jenssegers\Agent\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
