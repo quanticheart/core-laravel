@@ -8,6 +8,7 @@ use Quanticheart\Laravel\Commands\MakeHelperCommand;
 use Quanticheart\Laravel\Commands\MakeRepositoryArch;
 use Quanticheart\Laravel\Commands\MakeServiceArch;
 use Quanticheart\Laravel\Commands\MigrateQuanticHeartCommand;
+use Quanticheart\Laravel\Middlewares\ApiTokenMiddleware;
 
 class QuanticHeartProvider extends ServiceProvider
 {
@@ -18,6 +19,9 @@ class QuanticHeartProvider extends ServiceProvider
      */
     public function register()
     {
+        /** \Illuminate\Routing\Router $router */
+        $router = $this->app['router'];
+        $router->aliasMiddleware('api-token', ApiTokenMiddleware::class);
     }
 
     /**
