@@ -3,6 +3,7 @@
 namespace Quanticheart\Laravel\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 /**
  * Class SendPushToUsers
@@ -16,7 +17,7 @@ class MigrateQuanticHeartCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'migrate:quanticheart';
+    protected $signature = 'migrate:quanticheart {test?}';
 
     /**
      * The console command description.
@@ -42,11 +43,24 @@ class MigrateQuanticHeartCommand extends Command
      */
     public function handle()
     {
-        $path = realpath(__DIR__ . "/../");
+//        $path = realpath(__DIR__ . "/../");
+//        $test = $this->option('--test');
+        if ($this->argument('test') === 'test') {
+            $path = "/packages/quanticheart/laravel/src/Migrations";
+        } else {
+            $path = "/vendor/quanticheart/local/src/Migrations";
+        }
 
-        $this->info('Running migration ' );
-        $this->call('php artisan migrate --path='. $path . '/Migrations');
-        $this->comment('All done' );
+        $this->info('Running QaunticHeart migrations');
+        $this->info($path);
+//        $this->info('php artisan migrate --path="' . $path);
+        try {
+            Artisan::call('migrate', array('--path' => $path));
+            $this->info(Artisan::output());
+        } catch (\Throwable $th) {
+            $this->comment("Failed to migrate tables. " . $th->getMessage());
+        }
+        $this->comment('All done');
 
         return true;
     }
